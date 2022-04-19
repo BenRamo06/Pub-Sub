@@ -42,12 +42,12 @@ Core:
 Publisher-subscriber relationships can be one-to-many (fan-out), many-to-one (fan-in), and many-to-many, as shown in the following diagram:
 
 <p align="center">
-  <img src="https://github.com/BenRamo06/Pub-Sub/blob/master/images/Publisher-Subscription.png.png">
+  <img src="https://github.com/BenRamo06/Pub-Sub/blob/master/images/Publisher-Subscription.png">
 </p>
 
 The following diagram illustrates how a message passes from a publisher to a subscribe
 
 
 <p align="center">
-  <img src="https://github.com/BenRamo06/Pub-Sub/blob/master/images/Steps_PubSub.png.png">
+  <img src="https://github.com/BenRamo06/Pub-Sub/blob/master/images/Steps_PubSub.png">
 </p>
