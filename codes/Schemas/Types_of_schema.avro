@@ -1,0 +1,70 @@
+{
+  "type" : "record",
+  "name" : "Avro",
+  "fields" : [
+    {
+      "name" : "pokemon",
+      "type" : "string"
+    },
+    {
+      "name" : "type",
+      "type" : "string"
+    },
+    {
+      "name" : "generation",
+      "type" : "int"
+    },
+    {
+      "name" : "value",
+      "type" : {"type"  : "array",
+                "items" : { "name" : "habilities",
+                            "type" : "record",
+                            "fields" : [
+                                        {
+                                         "name" : "attack",
+                                         "type" : "int"
+                                        }
+
+                                       ]
+                          }
+                }
+    }
+  ]
+}
+
+
+Example:
+{"pokemon":"charmander", "type":"fire", "generation":1, "value": [{"attack": 200}] }
+
+-------------------------------------------------------------------------------------
+
+{
+  "type" : "record",
+  "name" : "Avro",
+  "fields" : [
+    {
+      "name" : "pokemon",
+      "type" : "string"
+    },
+    {
+      "name" : "type",
+      "type" : "string"
+    },
+    {
+      "name" : "generation",
+      "type" : "int"
+    },
+    {
+      "name" : "value",
+      "type" : {"type": "record", 
+                 "name": "habilities", 
+                 "fields" : [
+                              {"name":"attack", "type": "int"}
+                            ] 
+               }
+    }
+  ]
+}
+
+Example:
+{"pokemon":"charmander", "type":"fire", "generation":1, "value": {"attack": 200} }

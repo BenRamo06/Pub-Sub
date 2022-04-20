@@ -25,19 +25,6 @@ Core:
 *   Acknowledgement (or "ack"). A signal sent by a subscriber to Pub/Sub after it has received a message successfully. Acked messages are removed from the subscription's message queue.
 *   Push and pull. The two message delivery methods. A subscriber receives messages either by Pub/Sub pushing them to the subscriber's chosen endpoint, or by the subscriber pulling them from the service.
 
-### Topic
-
-
-
-*   --message-retention-duration=<MESSAGE_RETENTION_DURATION>: Indicates the minimum duration to retain a message after it is published to the topic.The minimum is 10 minutes and the maximum is 31 days. Valid values are strings of the form INTEGER[UNIT], where UNIT is one of "s", "m", "h", and "d" for seconds, minutes, hours, and days, respectively. If the unit is omitted, seconds is assumed.
-*   --schema=<SCHEMA> : ID of the schema or fully qualified identifier for the schema.
-
-### Publisher
-
-
-
-### Subscribers
-
 
 Publisher-subscriber relationships can be one-to-many (fan-out), many-to-one (fan-in), and many-to-many, as shown in the following diagram:
 
@@ -50,4 +37,35 @@ The following diagram illustrates how a message passes from a publisher to a sub
 
 <p align="center">
   <img src="https://github.com/BenRamo06/Pub-Sub/blob/master/images/Steps_PubSub.png">
+</p>
+
+
+### Subscriptions
+
+To receive messages published to a topic, you must create a subscription to that topic. Only messages published to the topic after the subscription is created are available to subscriber applications. The subscription connects the topic to a subscriber application that receives and processes messages published to the topic. A topic can have multiple subscriptions, but a given subscription belongs to a single topic.
+
+#### Types of subscriptions
+A subscription can use either the pull or push mechanism for message delivery. You can change or configure the mechanism at any time.
+
+* Pull subscription
+
+  In pull delivery, your subscriber application initiates requests to the Pub/Sub server to retrieve messages.
+
+  1. The subscribing application explicitly calls the pull method, which requests messages for delivery.   
+  2. The Pub/Sub server responds with the message (or an error if the queue is empty) , and an ack ID.   
+  3. The subscriber explicitly calls the acknowledge method, using the returned ack ID to acknowledge receipt.   
+
+<p align="center">
+  <img src="https://github.com/BenRamo06/Pub-Sub/blob/master/images/Pull_Subs.png">
+</p>
+
+* Push subscription
+
+  In push delivery, Pub/Sub initiates requests to your subscriber application to deliver messages.    
+
+  1. The Pub/Sub server sends each message as an HTTPS request to the subscriber application at a pre-configured endpoint.   
+  2. The endpoint acknowledges the message by returning an HTTP success status code. A non-success response indicates that the message should be resent.   
+
+  <p align="center">
+  <img src="https://github.com/BenRamo06/Pub-Sub/blob/master/images/Push_Subs.png">
 </p>
